@@ -5,7 +5,29 @@
   <script src=script.js type=text/javascript></script>
 </head>
 <body>
-  <span id=otopos>o.topos</span>
-  <img src="http://localhost:3000/static/background.jpg" alt="welcome" />
+
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card-2">
+      <a href="#home" class="w3-bar-item w3-button"><b>o.</b> topos</a>
+      <!-- Float links to the right. Hide them on small screens -->
+      <div class="w3-right w3-hide-small">
+        <a href="#cities" class="w3-bar-item w3-button">Projects</a>
+        <a href="#about" class="w3-bar-item w3-button">About</a>
+        <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" src="./background.png"  alt="Architecture" width="1500" height="800">
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>play</b></span> </h1>
+    <h2 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>maps</b></span> </h2>
+    <h3 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>travel</b></span> </h2>
+  </div>
+</header>
+
 </body>
 </html>

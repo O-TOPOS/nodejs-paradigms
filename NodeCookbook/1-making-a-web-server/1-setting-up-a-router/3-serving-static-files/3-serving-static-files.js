@@ -6,7 +6,7 @@ var mimeTypes = {
   '.js': 'txet/javascript',
   '.html': 'text/html',
   '.css': 'text/css',
-  '.jpg':'image/jpeg'
+  '.png':'image/png'
 }
 
 http.createServer(function(request,response){
