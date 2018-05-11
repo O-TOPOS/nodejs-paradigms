@@ -26,16 +26,16 @@ function cacheAndDeliver(f, cb){
           console.log('loading' + f+ 'from file');
           cache[f] = {content:data,
           timestamp:Date.now()};
-        }
+          }
         cb(err, data);
 
-      });
+        });
       return ;
-    }
-  console.log('loading' + f+ 'from cache');
-  cb(null, cache[f].content);
-});
-}
+      }
+    console.log('loading' + f+ 'from cache');
+    cb(null, cache[f].content);
+  });
+ }
 
 
 http.createServer(function(request,response){
