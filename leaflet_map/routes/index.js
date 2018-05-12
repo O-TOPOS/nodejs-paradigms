@@ -26,8 +26,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Otopos' });
 });
 
-
-
 /* GET json data. */
 router.get('/mapjson/:name', function (req, res) {
     if (req.params.name) {
@@ -44,7 +42,6 @@ router.get('/maplayers', function (req, res) {
     });
 });
 
-
 /* GET Map page. */
 router.get('/map', function(req,res) {
     Json.find({},{}, function(e,docs){
@@ -55,5 +52,5 @@ router.get('/map', function(req,res) {
         });
     });
 });
- 
+
 module.exports = router;
