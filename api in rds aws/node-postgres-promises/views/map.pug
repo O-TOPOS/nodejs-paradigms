@@ -4,11 +4,13 @@ block content
     script.
         //var myData = !{JSON.stringify(jsonData)};
         // Create variable to hold map element, give initial settings to map
-        var map = L.map('map',{ center: [42.375562, -71.106870], zoom: 14});
+        var map = L.map('map',{fullscreenControl: true, center: [38.005562, 23.706870], zoom: 12});
+
         // Add OpenStreetMap tile layer to map element
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png', {
         	attribution: '© OpenStreetMap'
         }).addTo(map);
+        //new LeafletToolbar.EditToolbar.Control({position: 'topleft'}).addTo(map, drawnItems);
         // Add JSON to map
         //L.geoJson(myData,{
         //    onEachFeature: function (feature, layer) {
