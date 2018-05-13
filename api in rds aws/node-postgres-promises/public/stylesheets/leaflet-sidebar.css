@@ -62,7 +62,7 @@
       .sidebar-tabs > li:hover, .sidebar-tabs > ul > li:hover {
         color: #000;
         background-color: #eee; }
-      .sidebar-tabs > li.active, .sidebar-tabs > ul > li.active {
+      .sidebar-tabs > li..sidebarive, .sidebar-tabs > ul > li.active {
         color: #fff;
         background-color: #0074d9; }
       .sidebar-tabs > li.disabled, .sidebar-tabs > ul > li.disabled {
