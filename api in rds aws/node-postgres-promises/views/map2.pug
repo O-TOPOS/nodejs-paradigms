@@ -1,92 +1,153 @@
-doctype html
-head
-  title sidebar-v2 example
-  meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
-  link(href='//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet')
-  link(rel='stylesheet' href='https://unpkg.com/leaflet@1.0.1/dist/leaflet.css')
-  //if lte IE 8
-    link(rel='stylesheet' href='//cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css')
-  link(rel='stylesheet' href='../stylesheets/leaflet-sidebar.css')
-  style.
-    body {
-    padding: 0;
-    margin: 0;
-    }
-    html, body, #map {
-    height: 100%;
-    font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
-    }
-    .lorem {
-    font-style: italic;
-    color: #AAA;
-    }
-#sidebar.sidebar.collapsed
-  // Nav tabs
-  .sidebar-tabs
-    ul(role='tablist')
-      li
-        a(href='#home' role='tab')
-          i.fa.fa-bars
-      li
-        a(href='#profile' role='tab')
-          i.fa.fa-user
-      li.disabled
-        a(href='#messages' role='tab')
-          i.fa.fa-envelope
-      li
-        a(href='https://github.com/Turbo87/sidebar-v2' role='tab' target='_blank')
-          i.fa.fa-github
-    ul(role='tablist')
-      li
-        a(href='#settings' role='tab')
-          i.fa.fa-gear
-  // Tab panes
-  .sidebar-content
-    #home.sidebar-pane
-      h1.sidebar-header
-        | sidebar-v2
-        span.sidebar-close
-          i.fa.fa-caret-left
-      p
-        | A responsive sidebar for mapping libraries like
-        a(href='http://leafletjs.com/') Leaflet
-        |  or
-        a(href='http://openlayers.org/') OpenLayers
-        | .
-      p.lorem
-        | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      p.lorem
-        | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      p.lorem
-        | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      p.lorem
-        | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-    #profile.sidebar-pane
-      h1.sidebar-header
-        | Profile
-        span.sidebar-close
-          i.fa.fa-caret-left
-    #messages.sidebar-pane
-      h1.sidebar-header
-        | Messages
-        span.sidebar-close
-          i.fa.fa-caret-left
-    #settings.sidebar-pane
-      h1.sidebar-header
-        | Settings
-        span.sidebar-close
-          i.fa.fa-caret-left
-#map.sidebar-map
-a(href='https://github.com/Turbo87/sidebar-v2/')
-  img(style='position: fixed; top: 0; right: 0; border: 0;' src='https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png' alt='Fork me on GitHub')
-script(src='https://unpkg.com/leaflet@1.0.1/dist/leaflet.js')
-script(src='../javascripts/leaflet-sidebar.js')
-script.
-  var map = L.map('map');
-  map.setView([51.2, 7], 9);
-  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 18,
-  attribution: 'Map data &copy; OpenStreetMap contributors'
-  }).addTo(map);
-  var marker = L.marker([51.2, 7]).addTo(map);
-  var sidebar = L.control.sidebar('sidebar').addTo(map);
+html
+  head
+    title map w sidebar
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    link(href='//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet')
+    link(rel='stylesheet' href='https://unpkg.com/leaflet@1.0.1/dist/leaflet.css')
+    //if lte IE 8
+      link(rel='stylesheet' href='//cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css')
+    link(rel='stylesheet' href='../stylesheets/leaflet-sidebar.css')
+    style.
+      body {
+      padding: 0;
+      margin: 0;
+      }
+      html, body, #map {
+      height: 100%;
+      font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+      }
+      .lorem {
+      font-style: italic;
+      color: #AAA;
+      }
+    #sidebar.sidebar.collapsed.sidebar-left
+      // Nav tabs
+      .sidebar-tabs
+        ul(role='tablist')
+          li.active
+            a(href='#home' role='tab')
+              i.fa.fa-bars
+          li
+            a(href='#profile' role='tab')
+              i.fa.fa-user
+          li.disabled
+            a(href='#messages' role='tab')
+              i.fa.fa-envelope
+          li
+            a(href='https://github.com/Turbo87/sidebar-v2' role='tab' target='_blank')
+              i.fa.fa-github
+        ul(role='tablist')
+          li
+            a(href='#settings' role='tab')
+              i.fa.fa-gear
+      // Tab panes
+      .sidebar-content
+        #home.sidebar-pane
+          h1.sidebar-header
+            | sidebar-v2
+            span.sidebar-close
+              i.fa.fa-caret-left
+          p
+            | A responsive sidebar for mapping libraries like 
+            a(href='http://leafletjs.com/') Leaflet
+            |  or 
+            a(href='http://openlayers.org/') OpenLayers
+            | .
+          p.lorem
+            | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        #profile.sidebar-pane
+          h1.sidebar-header
+            | Profile
+            span.sidebar-close
+              i.fa.fa-caret-left
+        #messages.sidebar-pane
+          h1.sidebar-header
+            | Messages
+            span.sidebar-close
+              i.fa.fa-caret-left
+        #settings.sidebar-pane
+          h1.sidebar-header
+            | Settings
+            span.sidebar-close
+              i.fa.fa-caret-left
+    #map.sidebar-map.leaflet-container.leaflet-retina.leaflet-safari.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag(tabindex='0' style='position: relative; outline: none;')
+      .leaflet-pane.leaflet-map-pane(style='transform: translate3d(120px, 0px, 0px);')
+        .leaflet-pane.leaflet-tile-pane
+          .leaflet-layer(style='z-index: 1; opacity: 1;')
+            .leaflet-tile-container.leaflet-zoom-animated(style='z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://a.tile.openstreetmap.org/9/265/170.png' style='width: 256px; height: 256px; transform: translate3d(355px, 3px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://b.tile.openstreetmap.org/9/266/170.png' style='width: 256px; height: 256px; transform: translate3d(611px, 3px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://c.tile.openstreetmap.org/9/265/169.png' style='width: 256px; height: 256px; transform: translate3d(355px, -253px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://a.tile.openstreetmap.org/9/266/169.png' style='width: 256px; height: 256px; transform: translate3d(611px, -253px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://b.tile.openstreetmap.org/9/265/171.png' style='width: 256px; height: 256px; transform: translate3d(355px, 259px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://c.tile.openstreetmap.org/9/266/171.png' style='width: 256px; height: 256px; transform: translate3d(611px, 259px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://c.tile.openstreetmap.org/9/264/170.png' style='width: 256px; height: 256px; transform: translate3d(99px, 3px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://c.tile.openstreetmap.org/9/267/170.png' style='width: 256px; height: 256px; transform: translate3d(867px, 3px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://b.tile.openstreetmap.org/9/264/169.png' style='width: 256px; height: 256px; transform: translate3d(99px, -253px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://b.tile.openstreetmap.org/9/267/169.png' style='width: 256px; height: 256px; transform: translate3d(867px, -253px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://a.tile.openstreetmap.org/9/264/171.png' style='width: 256px; height: 256px; transform: translate3d(99px, 259px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://a.tile.openstreetmap.org/9/267/171.png' style='width: 256px; height: 256px; transform: translate3d(867px, 259px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://b.tile.openstreetmap.org/9/263/170.png' style='width: 256px; height: 256px; transform: translate3d(-157px, 3px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://a.tile.openstreetmap.org/9/268/170.png' style='width: 256px; height: 256px; transform: translate3d(1123px, 3px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://a.tile.openstreetmap.org/9/263/169.png' style='width: 256px; height: 256px; transform: translate3d(-157px, -253px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://c.tile.openstreetmap.org/9/268/169.png' style='width: 256px; height: 256px; transform: translate3d(1123px, -253px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://c.tile.openstreetmap.org/9/263/171.png' style='width: 256px; height: 256px; transform: translate3d(-157px, 259px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://b.tile.openstreetmap.org/9/268/171.png' style='width: 256px; height: 256px; transform: translate3d(1123px, 259px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://c.tile.openstreetmap.org/9/265/172.png' style='width: 256px; height: 256px; transform: translate3d(355px, 515px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://a.tile.openstreetmap.org/9/266/172.png' style='width: 256px; height: 256px; transform: translate3d(611px, 515px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://b.tile.openstreetmap.org/9/264/172.png' style='width: 256px; height: 256px; transform: translate3d(99px, 515px, 0px); opacity: 1;')
+              img.leaflet-tile.leaflet-tile-loaded(alt='' src='http://b.tile.openstreetmap.org/9/267/172.png' style='width: 256px; height: 256px; transform: translate3d(867px, 515px, 0px); opacity: 1;')
+        .leaflet-pane.leaflet-shadow-pane
+          img.leaflet-marker-shadow.leaflet-zoom-animated(src='https://unpkg.com/leaflet@1.0.1/dist/images/marker-shadow.png' style='margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(600px, 247px, 0px);')
+        .leaflet-pane.leaflet-overlay-pane
+        .leaflet-pane.leaflet-marker-pane
+          img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive(src='https://unpkg.com/leaflet@1.0.1/dist/images/marker-icon-2x.png' tabindex='0' style='margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(600px, 247px, 0px); z-index: 247;')
+        .leaflet-pane.leaflet-tooltip-pane
+        .leaflet-pane.leaflet-popup-pane
+        .leaflet-proxy.leaflet-zoom-animated(style='transform: translate3d(68085px, 43763.999999999985px, 0px) scale(256);')
+      .leaflet-control-container
+        .leaflet-top.leaflet-left
+          .leaflet-control-zoom.leaflet-bar.leaflet-control
+            a.leaflet-control-zoom-in(href='#' title='Zoom in') +
+            a.leaflet-control-zoom-out(href='#' title='Zoom out') -
+        .leaflet-top.leaflet-right
+        .leaflet-bottom.leaflet-left
+        .leaflet-bottom.leaflet-right
+          .leaflet-control-attribution.leaflet-control
+            a(href='http://leafletjs.com' title='A JS library for interactive maps') Leaflet
+            |  | Map data &copy; OpenStreetMap contributors
+    a(href='https://github.com/Turbo87/sidebar-v2/')
+      img(style='position: fixed; top: 0; right: 0; border: 0;' src='https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png' alt='Fork me on GitHub')
+    script(src='https://unpkg.com/leaflet@1.0.1/dist/leaflet.js')
+    script(src='../javascripts/leaflet-sidebar.js')
+    script.
+      var map = L.map('map');
+      map.setView([51.2, 7], 9);
+      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; OpenStreetMap contributors'
+      }).addTo(map);
+      var marker = L.marker([51.2, 7]).addTo(map);
+      var sidebar = L.control.sidebar({content:'sidebar'}).addTo(map);
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
