@@ -21,7 +21,7 @@ html
       color: #AAA;
       }
     body  
-    #sidebar.sidebar.collapsed
+    #sidebar.sidebar.collapsed.sidebar-left
       // Nav tabs
       .sidebar-tabs
         ul(role='tablist')
@@ -56,12 +56,6 @@ html
             | .
           p.lorem
             | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-          p.lorem
-            | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-          p.lorem
-            | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-          p.lorem
-            | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         #profile.sidebar-pane
           h1.sidebar-header
             | Profile
@@ -90,4 +84,26 @@ html
       attribution: 'Map data &copy; OpenStreetMap contributors'
       }).addTo(map);
       var marker = L.marker([51.2, 7]).addTo(map);
-      var sidebar = L.control.sidebar({content:'sidebar'}).addTo(map);
+      var sidebar = L.control.sidebar({
+          //autopan: false,       // whether to maintain the centered map point when opening the sidebar
+          //closeButton: true,    // whether t add a close button to the panes
+          container: document.getElementById('sidebar'), // the DOM container or #ID of a predefined sidebar container that should be used
+          position: 'left'    // left or right
+      });
+      sidebar.addTo(map);
+      console.log(sidebar.container);
+      console.log(document.getElementById('map'));
+      console.log(document.getElementById('sidebar'));
+      console.log(map);
+      console.log(L.control);
+      console.log(L.control.sidebar);
+      console.log('a');
+      
+      //button(onclick='toggleSidebar()')>Toggle.Sidebar;
+
+      //map.addControl(sidebar);
+      sidebar.open('home')
+      
+      //sidebar.show();
+      //setTimeout(function () {sidebar.show()};, 500);
+      

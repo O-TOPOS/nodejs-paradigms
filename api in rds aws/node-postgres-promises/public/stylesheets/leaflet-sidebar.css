@@ -14,16 +14,13 @@
       transition: width 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
-      width: 305px;
-      max-width: 305px; } }
+      width: 305px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .sidebar {
-      width: 390px;
-      max-width: 390px; } }
+      width: 390px; } }
   @media (min-width: 1200px) {
     .sidebar {
-      width: 460px;
-      max-width: 460px; } }
+      width: 460px; } }
 
 .sidebar-left {
   left: 0; }
@@ -55,14 +52,14 @@
     .sidebar-tabs > li, .sidebar-tabs > ul > li {
       width: 100%;
       height: 40px;
-      color: #333;
+      color: #999999;
       font-size: 12pt;
       overflow: hidden;
       transition: all 80ms; }
       .sidebar-tabs > li:hover, .sidebar-tabs > ul > li:hover {
         color: #000;
         background-color: #eee; }
-      .sidebar-tabs > li..sidebarive, .sidebar-tabs > ul > li.active {
+      .sidebar-tabs > li.active, .sidebar-tabs > ul > li.active {
         color: #fff;
         background-color: #0074d9; }
       .sidebar-tabs > li.disabled, .sidebar-tabs > ul > li.disabled {
@@ -88,7 +85,7 @@
   top: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.95);
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto; }
   .sidebar-left .sidebar-content {
     left: 40px;
@@ -98,9 +95,6 @@
     right: 40px; }
   .sidebar.collapsed > .sidebar-content {
     overflow-y: hidden; }
-
-.collapsed > .sidebar-content {
-  overflow-y: hidden; }
 
 .sidebar-pane {
   display: none;
@@ -143,6 +137,18 @@
   .sidebar-right .sidebar-close {
     left: 0; }
 
+.sidebar-left ~ .sidebar-map {
+  margin-left: 40px; }
+  @media (min-width: 768px) {
+    .sidebar-left ~ .sidebar-map {
+      margin-left: 0; } }
+
+.sidebar-right ~ .sidebar-map {
+  margin-right: 40px; }
+  @media (min-width: 768px) {
+    .sidebar-right ~ .sidebar-map {
+      margin-right: 0; } }
+
 .sidebar {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65); }
   .sidebar.leaflet-touch {
@@ -155,41 +161,41 @@
         border: 2px solid rgba(0, 0, 0, 0.2); } }
 
 @media (min-width: 768px) {
-  .sidebar-left ~ .leaflet-control-container .leaflet-left {
+  .sidebar-left ~ .sidebar-map .leaflet-left {
     transition: left 500ms; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .sidebar-left ~ .leaflet-control-container .leaflet-left {
+  .sidebar-left ~ .sidebar-map .leaflet-left {
     left: 315px; } }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .sidebar-left ~ .leaflet-control-container .leaflet-left {
+  .sidebar-left ~ .sidebar-map .leaflet-left {
     left: 400px; } }
 
 @media (min-width: 1200px) {
-  .sidebar-left ~ .leaflet-control-container .leaflet-left {
+  .sidebar-left ~ .sidebar-map .leaflet-left {
     left: 470px; } }
 
 @media (min-width: 768px) {
-  .sidebar-left.collapsed ~ .leaflet-control-container .leaflet-left {
+  .sidebar-left.collapsed ~ .sidebar-map .leaflet-left {
     left: 50px; } }
 
 @media (min-width: 768px) {
-  .sidebar-right ~ .leaflet-control-container .leaflet-right {
+  .sidebar-right ~ .sidebar-map .leaflet-right {
     transition: right 500ms; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .sidebar-right ~ .leaflet-control-container .leaflet-right {
+  .sidebar-right ~ .sidebar-map .leaflet-right {
     right: 315px; } }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .sidebar-right ~ .leaflet-control-container .leaflet-right {
+  .sidebar-right ~ .sidebar-map .leaflet-right {
     right: 400px; } }
 
 @media (min-width: 1200px) {
-  .sidebar-right ~ .leaflet-control-container .leaflet-right {
+  .sidebar-right ~ .sidebar-map .leaflet-right {
     right: 470px; } }
 
 @media (min-width: 768px) {
-  .sidebar-right.collapsed ~ .leaflet-control-container .leaflet-right {
+  .sidebar-right.collapsed ~ .sidebar-map .leaflet-right {
     right: 50px; } }
