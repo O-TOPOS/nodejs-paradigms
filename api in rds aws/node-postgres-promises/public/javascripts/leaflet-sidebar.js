@@ -17,10 +17,23 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
     initialize: function (id, options) {
         var i, child;
 
+        console.log('a');
+        console.log(options);
+        console.log('a');
+        console.log(id);
+
+        var options = {position:'left'};
         L.setOptions(this, options);
 
         // Find sidebar HTMLElement
         this._sidebar = L.DomUtil.get(id);
+
+        console.log('a');
+        console.log(L.DomUtil);
+        console.log('a');
+        console.log(this._sidebar);
+        console.log('a');
+        console.log(this.options);
 
         // Attach .sidebar-left/right class
         L.DomUtil.addClass(this._sidebar, 'sidebar-' + this.options.position);
