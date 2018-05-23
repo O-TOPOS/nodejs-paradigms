@@ -16,20 +16,14 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
 
     initialize: function (id, options) {
         var i, child;
-        console.log('i initialise!');
 
         L.setOptions(this, options);
 
         // Find sidebar HTMLElement
         this._sidebar = L.DomUtil.get(id);
 
-        console.log(id);
-        console.log('end');
-        //console.log(L.Browser.touch);
-
         // Attach .sidebar-left/right class
         L.DomUtil.addClass(this._sidebar, 'sidebar-' + this.options.position);
-
 
         // Attach touch styling if necessary
         if (L.Browser.touch)
@@ -38,7 +32,7 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
         // Find sidebar > div.sidebar-content
         for (i = this._sidebar.children.length - 1; i >= 0; i--) {
             child = this._sidebar.children[i];
-            if (
+            if (child.tagName == 'DIV' &&
                     L.DomUtil.hasClass(child, 'sidebar-content'))
                 this._container = child;
         }
@@ -61,8 +55,6 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
                 var closeButtons = child.querySelectorAll('.sidebar-close');
                 for (var j = 0, len = closeButtons.length; j < len; j++)
                     this._closeButtons.push(closeButtons[j]);
-
-        console.log(this._panes);
             }
         }
     },

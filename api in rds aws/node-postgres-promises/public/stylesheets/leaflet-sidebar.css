@@ -52,7 +52,7 @@
     .sidebar-tabs > li, .sidebar-tabs > ul > li {
       width: 100%;
       height: 40px;
-      color: #999999;
+      color: #333;
       font-size: 12pt;
       overflow: hidden;
       transition: all 80ms; }
@@ -75,8 +75,7 @@
         line-height: 40px;
         color: inherit;
         text-decoration: none;
-        text-align: center;
-        cursor: pointer; }
+        text-align: center; }
   .sidebar-tabs > ul + ul {
     bottom: 0; }
 
@@ -85,7 +84,7 @@
   top: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.95);
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: auto; }
   .sidebar-left .sidebar-content {
     left: 40px;
