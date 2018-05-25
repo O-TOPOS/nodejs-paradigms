@@ -3,3 +3,6 @@ https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-pa
 
 
 also build an rds in aws for postgres
+
+setup postgis
+https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.html#Appendix.PostgreSQL.CommonDBATasks.PostGIS
