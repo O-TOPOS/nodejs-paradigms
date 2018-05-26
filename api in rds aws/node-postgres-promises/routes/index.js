@@ -15,7 +15,7 @@ var database = "p1" // database name
 var conString = "postgres://"+username+":"+password+"@"+host+"/"+database; // Your Database Connection
 
 // Set up your database query to display GeoJSON
-var user_query = "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features FROM (SELECT 'Feature' As type, ST_AsGeoJSON(ST_Centroid(lg.geom))::json As geometry, row_to_json((id, class)) As properties FROM project1.uk_comp_model As lg LIMIT 1) As f) As fc";
+var user_query = "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features FROM (SELECT 'Feature' As type, ST_AsGeoJSON(ST_Point(ST_X(ST_Centroid(ST_Transform(lg.geom,4326))), ST_Y(ST_Centroid(ST_Transform(lg.geom,4326)))))::json As geometry, row_to_json((id, class)) As properties FROM project1.uk_comp_model_pr_3857 As lg) As f) As fc";
 // var user_query = "SELECT 1 UNION SELECT 2";
 
 /* GET home page. */
@@ -61,20 +61,20 @@ router.get('/data', function (req, res) {
 });
 
 router.get('/map2', function(req, res) {
-    //var client = new Client(conString); // Setup our Postgres Client
-    //client.connect(); // connect to the client
-    //var query = client.query(new Query(user_query)); // Run our Query
-    //query.on("row", function (row, result) {
-    //    result.addRow(row);
-    //});
+    var client = new Client(conString); // Setup our Postgres Client
+    client.connect(); // connect to the client
+    var query = client.query(new Query(user_query)); // Run our Query
+    query.on("row", function (row, result) {
+        result.addRow(row);
+    });
     //Pass the result to the map page
-    //query.on("end", function (result) {
-        //var data = result.rows[0].row_to_json // Save the JSON as variable data
+    query.on("end", function (result) {
+        var data = result.rows[0].row_to_json // Save the JSON as variable data
         res.render('map2', {
-            title: "Express API"//, // Give a title to our page
-            //jsonData: data // Pass data to the View
+            title: "Express API", // Give a title to our page
+            jsonData: data // Pass data to the View
         });
-  //  });
+    });
 });
 
 /* GET the filtered page */
