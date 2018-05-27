@@ -126,11 +126,7 @@ script.
 	}).fitBounds(markers.getBounds());
 	console.log(map.options.crs);
 	console.log(L);
-	//var crs = new L.Proj.CRS('EPSG:27700',
-	//		'+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +towgs84=375,-111,431,0,0,0,0 +units=m +no_defs'
-	//	);
 		
-	//map.setView([42.375562, -71.106870], 9);
 	baseLayer.addTo(map);
 	//markers.addTo(map);
 	map.addLayer(markers);
@@ -141,7 +137,9 @@ script.
 				};
 	console.log(myData);
 	console.log(L.Proj);
-	//L.Proj.geoJson(myData, {style:myStyle}).addTo(map);
+	
+	// works 
+	//L.geoJson(myData, {style:myStyle}).addTo(map);
 		
 	var marker = L.marker([51.507351, -0.127758]).addTo(map);
 	var sidebar = L.control.sidebar('sidebar').addTo(map);
