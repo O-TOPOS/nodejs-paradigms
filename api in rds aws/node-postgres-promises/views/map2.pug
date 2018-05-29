@@ -7,6 +7,7 @@ head
 	//if lte IE 8
 		link(rel='stylesheet' href='//cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css')
 	link(rel='stylesheet' href='../stylesheets/leaflet-sidebar.css')
+	link(rel='stylesheet' href='../stylesheets/stylenew.css')
 	style.
 		body {
 		padding: 0;
@@ -55,13 +56,20 @@ head
 				| .
 			p.lorem
 				| Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+			.container
+				.row
+					#date-chart.chart-wrapper
+						.chart-title.bold
+							strong  Number of Donations 
+						p.lorem
+						| Lorem ipsum dolor sit amet
 			#controls
 				#form
 					form(action='')
 						input(type='radio' name='filter' value='all' checked='')
-						| Show All Coffee Shops
+						| Show all 
 						input(type='radio' name='filter' value='starbucks')
-						| Starbucks Only
+						| Show some 
 		#profile.sidebar-pane
 			h1.sidebar-header
 				| Profile
@@ -83,10 +91,14 @@ a(href='https://github.com/Turbo87/sidebar-v2/')
 script(src='https://unpkg.com/leaflet@1.0.1/dist/leaflet.js')
 script(src='../javascripts/leaflet-sidebar.js')
 script(src='../javascripts/leaflet.markercluster.js')
-script(src='../javascripts/proj4.js')
-script(src='../javascripts/proj4-src.js')
 link(href='../stylesheets/MarkerCluster.css' rel='stylesheet')
 link(href='../stylesheets/MarkerCluster.Default.css' rel='stylesheet')
+link(href='../stylesheets/dc.css' rel='stylesheet')
+script(src='../javascripts/crossfilter.js' type='text/javascript')
+script(src='../javascripts/d3.js' type='text/javascript')
+script(src='../javascripts/dc.js' type='text/javascript')
+script(src='../javascripts/queue.js' type='text/javascript')
+script(src='../javascripts/Dashboard.js' type='text/javascript')
 script.
 	var myData = !{JSON.stringify(jsonData)};
 	//var map = L.map('map');
@@ -105,12 +117,6 @@ script.
 		"opacity": 0.65
 		};
 
-	//var datalayer = L.geoJSON(myData, {
-	//		style: myStyle
-	//}).addTo(map);
-	//console.log(map);
-	//proj4.defs("urn:ogc:def:crs:EPSG::27700", "+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +towgs84=375,-111,431,0,0,0,0 +units=m +no_defs");
-	
 	var geojson = L.geoJson(myData, {
 		onEachFeature: function(feature, layer) {
 			// ADD A POPUP WITH SOME INFO
@@ -126,6 +132,7 @@ script.
 	}).fitBounds(markers.getBounds());
 	console.log(map.options.crs);
 	console.log(L);
+	console.log(document.getElementById('date-chart'));
 		
 	baseLayer.addTo(map);
 	//markers.addTo(map);
@@ -136,7 +143,6 @@ script.
 				"properties": {"name": "urn:ogc:def:crs:EPSG::27700"}
 				};
 	console.log(myData);
-	console.log(L.Proj);
 	
 	// works 
 	//L.geoJson(myData, {style:myStyle}).addTo(map);
@@ -144,29 +150,5 @@ script.
 	var marker = L.marker([51.507351, -0.127758]).addTo(map);
 	var sidebar = L.control.sidebar('sidebar').addTo(map);
 		
-	//L.geoJson(myData,{
-	//  onEachFeature: function (feature, layer) {
-	//    layer.bindPopup(feature.properties.id);
-	//  }
-	//}).addTo(map);
 
-	//L.geoJSON(myData, {
-	//  style: {color: "#ff0000"}
-	//}).addTo(map);
-	
-	//console.log(sidebar.container);
-	//console.log(document.getElementById('map'));
-	//console.log(document.getElementById('sidebar'));
-	//console.log(map);
-	//console.log(L.control);
-	//console.log(L.control.sidebar);
-	//console.log('a');
-	
-	//button(onclick='toggleSidebar()')>Toggle.Sidebar;
-
-	//map.addControl(sidebar);
-	//sidebar.open('home')
-	
-	//sidebar.show();
-	//setTimeout(function () {sidebar.show()};, 500);
 	

@@ -8,6 +8,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var pug = require('pug');
 
+var d3 = require('d3');
+var dc = require('dc');
+var crossfilter = require('crossfilter');
+
 var app = express();
 
 // view engine setup
