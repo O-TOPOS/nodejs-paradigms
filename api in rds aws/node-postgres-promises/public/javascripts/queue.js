@@ -34,7 +34,11 @@
       return function(e, r) {
         --active;
         console.log(error);
-        console.log('error');
+        console.log('error2');
+        console.log(e);
+        console.log('e');
+        console.log(r);
+
         if (error != null) return;
         if (e != null) {
           console.log(e);

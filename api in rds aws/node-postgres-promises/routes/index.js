@@ -20,7 +20,7 @@ var user_query = "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' As ty
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('home', { title: 'Express' });
 });
 
 router.get('/api/puppies', db.getAllPuppies);
@@ -70,7 +70,7 @@ router.get('/map2', function(req, res) {
     //Pass the result to the map page
     query.on("end", function (result) {
         var data = result.rows[0].row_to_json // Save the JSON as variable data
-        res.render('map2', {
+        res.render('pointmap', {
             title: "Express API", // Give a title to our page
             jsonData: data // Pass data to the View
         });
@@ -79,23 +79,23 @@ router.get('/map2', function(req, res) {
 
 /* GET the filtered page */
 router.get('/filter*', function (req, res) {
-    var name = req.query.name;
-    if (name.indexOf("--") > -1 || name.indexOf("'") > -1 || name.indexOf(";") > -1 || name.indexOf("/*") > -1 || name.indexOf("xp_") > -1){
+    var rdclass = req.query.rdclass;
+    if (rdclass.indexOf("--") > -1 || rdclass.indexOf("'") > -1 || rdclass.indexOf(";") > -1 || rdclass.indexOf("/*") > -1 || rdclass.indexOf("xp_") > -1){
         console.log("Bad request detected");
         res.redirect('/map');
         return;
     } else {
         console.log("Request passed")
-        var filter_query = "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features FROM (SELECT 'Feature' As type, ST_AsGeoJSON(ST_Centroid(lg.geom))::json As geometry, row_to_json((id, name)) As properties FROM cambridge_coffee_shops As lg WHERE lg.name = \'" + name + "\') As f) As fc";
-        var client = new pg.Client(conString);
+        var filter_query = "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features FROM (SELECT 'Feature' As type, ST_AsGeoJSON(ST_Point(ST_X(ST_Centroid(ST_Transform(lg.geom,4326))), ST_Y(ST_Centroid(ST_Transform(lg.geom,4326)))))::json As geometry, row_to_json((id, class)) As properties FROM project1.uk_comp_model_pr_3857 As lg WHERE lg.formofway = \'" + rdclass + "\') As f) As fc";
+        var client = new Client(conString);
         client.connect();
-        var query = client.query(filter_query);
+        var query = client.query(new Query(filter_query));
         query.on("row", function (row, result) {
             result.addRow(row);
         });
         query.on("end", function (result) {
             var data = result.rows[0].row_to_json
-            res.render('map', {
+            res.render('linemap', {
                 title: "Express API",
                 jsonData: data
             });
