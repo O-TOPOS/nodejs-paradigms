@@ -86,7 +86,7 @@ router.get('/filter*', function (req, res) {
         return;
     } else {
         console.log("Request passed")
-        var filter_query = "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features FROM (SELECT 'Feature' As type, ST_AsGeoJSON(ST_Point(ST_X(ST_Centroid(ST_Transform(lg.geom,4326))), ST_Y(ST_Centroid(ST_Transform(lg.geom,4326)))))::json As geometry, row_to_json((id, class)) As properties FROM project1.uk_comp_model_pr_3857 As lg WHERE lg.formofway = \'" + rdclass + "\') As f) As fc";
+        var filter_query = "SELECT row_to_json(fc) FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features FROM (SELECT 'Feature' As type, ST_AsGeoJSON(ST_Transform(lg.geom,4326))::json As geometry, row_to_json((id, class)) As properties FROM project1.uk_comp_model_pr_3857 As lg WHERE lg.formofway = \'" + rdclass + "\') As f) As fc";
         var client = new Client(conString);
         client.connect();
         var query = client.query(new Query(filter_query));
