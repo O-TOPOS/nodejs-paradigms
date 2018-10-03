@@ -8,6 +8,7 @@ head
 		link(rel='stylesheet' href='//cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css')
 	link(rel='stylesheet' href='../stylesheets/leaflet-sidebar.css')
 	link(rel='stylesheet' href='../stylesheets/stylenew.css')
+	link(rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
 	style.
 		body {
 		padding: 0;
@@ -84,17 +85,23 @@ head
 				//				strong  Number of Donations 
 				//			p.lorem
 				//			| Lorem ipsum dolor sit amet
+				#container(style='height: 60px')
+					button#button button1
+					button#button2 button2
+					button#button3 button3
+				#container(style='height: 60px')
+					button#button5 button5
+					button#button6 button6
+					button#button7 button7
 				#container2(style='width: 400px; height: 400px; margin: 0 auto')
 				#container4(style='width: 400px; height: 20px; margin: 0 auto')
 				.dropdown
-					button.dropbtn(onclick='myFunction()') Level3
-					#myDropdown.dropdown-content
-						a(href='#') all
-						a(href='#') 1
-						a(href='#') 2
-						a(href='#') 3
-						a(href='#') 4
-						a(href='#') 5
+					button.btn.btn-default.dropdown-toggle(type='button' data-toggle='dropdown' value='Item 1')
+						| Item 1
+						span.caret
+					ul.dropdown-menu(value='Item 1')
+						li(onclick='dropdown(this.innerHTML);') Item 1
+						li(onclick='dropdown(this.innerHTML);') Item 2
 		#profile.sidebar-pane
 			h1.sidebar-header
 				| Profile
@@ -132,6 +139,10 @@ script(src='http://code.highcharts.com/highcharts.js')
 script(src='http://code.highcharts.com/highcharts-more.js')
 script(src='http://code.highcharts.com/modules/exporting.js')
 script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+// jQuery library
+//script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+// Latest compiled JavaScript
+script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
 script.
 	var myData = !{JSON.stringify(jsonData)};
 	//var map = L.map('map');
@@ -181,68 +192,96 @@ script.
 				};
 	console.log(myData);
 
-	Highcharts.chart('container2', {
+	$(function () {
+		var chart = new Highcharts.Chart({
+				chart: {
+						renderTo: 'container2', 
+						polar: true
+				},
 
-			chart: {
-					polar: true
-			},
+				title: {
+						text: 'Highcharts Polar Chart'
+				},
 
-			title: {
-					text: 'Highcharts Polar Chart'
-			},
+				pane: {
+						startAngle: 0,
+						endAngle: 360
+				},
 
-			pane: {
-					startAngle: 0,
-					endAngle: 360
-			},
+				xAxis: {
+						tickInterval: 72,
+						min: 0,
+						max: 360,
+						labels: {
+								formatter: function () {
+										return this.value + '°';
+								}
+						}
+				},
 
-			xAxis: {
-					tickInterval: 45,
-					min: 0,
-					max: 360,
-					labels: {
-							formatter: function () {
-									return this.value + '°';
-							}
-					}
-			},
+				yAxis: {
+						min: 0
+				},
 
-			yAxis: {
-					min: 0
-			},
+				plotOptions: {
+						series: {
+								pointStart: 0,
+								pointInterval: 72
+						},
+						column: {
+								pointPadding: 0,
+								groupPadding: 0
+						}
+				},
 
-			plotOptions: {
-					series: {
-							pointStart: 0,
-							pointInterval: 45
-					},
-					column: {
-							pointPadding: 0,
-							groupPadding: 0
-					}
-			},
-
-			series: [{
-					type: 'column',
-					name: 'Column',
-					data: [8, 7, 6, 5, 4, 3, 2, 1],
-					pointPlacement: 'between'
-			}, {
-					type: 'line',
-					name: 'Line',
-					data: [1, 2, 3, 4, 5, 6, 7, 8]
-			}, {
-					type: 'area',
-					name: 'Area',
-					data: [1, 8, 2, 7, 3, 6, 4, 5]
-			}]
+				series: [{
+						type: 'column',
+						name: 'Column',
+						data: [0, 0, 0, 0, 0],
+						//pointPlacement: 'between'
+				}, {
+						type: 'line',
+						name: 'Line',
+						data: [0, 0, 0, 0, 0]
+				}, {
+						type: 'area',
+						name: 'Area',
+						data: [0, 0, 0, 0, 0]
+				}]
+		});
+		
+		// The button action
+		$('#button').click(function() {
+				chart.series[0].setData([8, 7, 6, 5, 4]);
+				chart.series[1].setData([7, 6, 5, 4, 3]);
+				chart.series[2].setData([6, 5, 4, 3, 2]);
+		});
+		
+		$('#button2').click(function() {
+			chart.series[0].setData([4, 7, 6, 5, 4]);
+			chart.series[2].setData([3, 5, 3, 4, 3]);
+			chart.series[2].setData([2, 3, 1, 3, 2]);
+		});
+		
+		$('#button3').click(function() {
+			chart.series[0].setData([1, 2, 3, 4, 5]);
+			chart.series[1].setData([1, 2, 3, 4, 4]);
+			chart.series[2].setData([1, 2, 2, 4, 2]);
+		});
+		
 	});
-
+	
 	
 	/* When the user clicks on the button, 
 	toggle between hiding and showing the dropdown content */
 	function myFunction() {
 		document.getElementById('myDropdown').classList.toggle("show");
+	}
+	
+
+	function dropdown(val) {
+		var y = document.getElementsByClassName('btn btn-default dropdown-toggle');
+		var aNode = y[0].innerHTML = val + ' <span class="caret"></span>'; // Append 
 	}
 
 	// Close the dropdown menu if the user clicks outside of it
@@ -262,7 +301,6 @@ script.
 	
 	// works 
 	//L.geoJson(myData, {style:myStyle}).addTo(map);
-		
 	//var marker = L.marker([51.507351, -0.127758]).addTo(map);
 	
 	var myIcon = L.divIcon({className: 'my-div-icon'});

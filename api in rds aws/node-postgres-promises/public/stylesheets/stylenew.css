@@ -386,6 +386,10 @@ a {
     float: left; /* Float the buttons side by side */
 }
 
+.btn-group button2 {
+    background-color: #4C4F50; 
+}
+
 .btn-group button:not(:last-child) {
     border-right: none; /* Prevent double borders */
 }
