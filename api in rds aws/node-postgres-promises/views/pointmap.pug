@@ -57,51 +57,34 @@ head
 				| .
 			p.lorem
 				| Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
-			.btn-group
-				.dropdown
-					button.dropbtn(onclick='myFunction()') Level1
-					#myDropdown.dropdown-content
-						a(href='#') Link 1
-						a(href='#') Link 2
-						a(href='#') Link 3
-				.dropdown
-					button.dropbtn(onclick='myFunction()') Level2
-					#myDropdown.dropdown-content
-						a(href='#') Link 1
-						a(href='#') Link 2
-						a(href='#') Link 3
-				.dropdown
-					button.dropbtn(onclick='myFunction()') Level2
-					#myDropdown.dropdown-content
-						a(href='#') Link 1
-						a(href='#') Link 2
-						a(href='#') Link 3
-				#container3(style='width: 400px; height: 20px; margin: 0 auto')
-				//#container
-				//.container
-				//	.row
-				//		#date-chart.chart-wrapper
-				//			.chart-title.bold
-				//				strong  Number of Donations 
-				//			p.lorem
-				//			| Lorem ipsum dolor sit amet
-				#container(style='height: 60px')
+			#container3(style='width: 400px; height: 20px; margin: 0 auto')
+			//#container
+			//.container
+			//	.row
+			//		#date-chart.chart-wrapper
+			//			.chart-title.bold
+			//				strong  Number of Donations 
+			//			p.lorem
+			//			| Lorem ipsum dolor sit amet
+			#container(style='height: 60px')
+				.btn-group
 					button#button button1
 					button#button2 button2
 					button#button3 button3
-				#container(style='height: 60px')
+			#container(style='height: 60px')
+				.btn-group
 					button#button5 button5
 					button#button6 button6
 					button#button7 button7
-				#container2(style='width: 400px; height: 400px; margin: 0 auto')
-				#container4(style='width: 400px; height: 20px; margin: 0 auto')
-				.dropdown
-					button.btn.btn-default.dropdown-toggle(type='button' data-toggle='dropdown' value='Item 1')
-						| Item 1
-						span.caret
-					ul.dropdown-menu(value='Item 1')
-						li(onclick='dropdown(this.innerHTML);') Item 1
-						li(onclick='dropdown(this.innerHTML);') Item 2
+			#container2(style='width: 350px; height: 350px; margin: 0 auto')
+			#container4(style='width: 400px; height: 20px; margin: 0 auto')
+			.dropdown
+				button.btn.btn-default.dropdown-toggle(type='button' data-toggle='dropdown' value='Item 1')
+					| Item 1
+					span.caret
+				ul.dropdown-menu(value='Item 1')
+					li(onclick='dropdown(this.innerHTML);') Item 1
+					li(onclick='dropdown(this.innerHTML);') Item 2
 		#profile.sidebar-pane
 			h1.sidebar-header
 				| Profile
@@ -271,33 +254,12 @@ script.
 		
 	});
 	
-	
-	/* When the user clicks on the button, 
-	toggle between hiding and showing the dropdown content */
-	function myFunction() {
-		document.getElementById('myDropdown').classList.toggle("show");
-	}
-	
 
 	function dropdown(val) {
 		var y = document.getElementsByClassName('btn btn-default dropdown-toggle');
 		var aNode = y[0].innerHTML = val + ' <span class="caret"></span>'; // Append 
 	}
-
-	// Close the dropdown menu if the user clicks outside of it
-	window.onclick = function(event) {
-		if (!event.target.matches('.dropbtn')) {
-
-			var dropdowns = document.getElementsByClassName("dropdown-content");
-			var i;
-			for (i = 0; i < dropdowns.length; i++) {
-				var openDropdown = dropdowns[i];
-				if (openDropdown.classList.contains('show')) {
-					openDropdown.classList.remove('show');
-				}
-			}
-		}
-	}
+	
 	
 	// works 
 	//L.geoJson(myData, {style:myStyle}).addTo(map);

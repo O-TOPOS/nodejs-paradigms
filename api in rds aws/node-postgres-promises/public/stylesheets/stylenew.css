@@ -378,16 +378,12 @@ a {
 .show {display:block;}
 
 .btn-group button {
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
+    background-color: #ffbf42; /* Green background */
+    border: 1px solid black; /* Green border */
     color: white; /* White text */
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
     float: left; /* Float the buttons side by side */
-}
-
-.btn-group button2 {
-    background-color: #4C4F50; 
 }
 
 .btn-group button:not(:last-child) {
@@ -403,13 +399,13 @@ a {
 
 /* Add a background color on hover */
 .btn-group button:hover {
-    background-color: #3e8e41;
+    background-color: #4d8596;
 }
 
 .my-div-icon
 {
   background:red;
-  border:5px solid rgba(255,255,255,0.5);
+  border:5px solid rgba(59,101,107,0.5);
   color:blue;
   font-weight:bold;
   text-align:center;
