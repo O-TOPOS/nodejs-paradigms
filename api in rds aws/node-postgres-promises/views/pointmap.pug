@@ -66,16 +66,21 @@ head
 			//				strong  Number of Donations 
 			//			p.lorem
 			//			| Lorem ipsum dolor sit amet
-			#container(style='height: 60px')
+			#container(style='height: 40px')
 				.btn-group
 					button#button button1
 					button#button2 button2
 					button#button3 button3
-			#container(style='height: 60px')
+			#container(style='height: 40px')
 				.btn-group
 					button#button5 button5
 					button#button6 button6
 					button#button7 button7
+			#container(style='height: 40px')
+				.btn-group
+					button#button8 button8
+					button#button9 button9
+					button#button10 button10
 			#container2(style='width: 350px; height: 350px; margin: 0 auto')
 			#container4(style='width: 400px; height: 20px; margin: 0 auto')
 			.dropdown
@@ -137,7 +142,7 @@ script.
 	});
 	
 	// Add JSON to map
-	console.log(myData);
+	//console.log(myData);
 	var myStyle = {
 		"color": "#ff7800",
 		"weight": 5,
@@ -147,23 +152,30 @@ script.
 	var geojson = L.geoJson(myData, {
 		onEachFeature: function(feature, layer) {
 			// ADD A POPUP WITH SOME INFO
-			layer.bindPopup("<h2>" + feature.properties.id + "</p>");
+			layer.bindPopup("<h2>" + feature.properties.f1 + "</p>");
 		}
 	});
 	
 	var markers = L.markerClusterGroup();
-
 	markers.addLayer(geojson);
 	
+	//var myIcon = L.divIcon({className: 'my-div-icon'});
 	
+	/*var markers = L.markerClusterGroup({
+		singleMarkerMode: true,
+		iconCreateFunction: function (cluster) {
+				var childCount = cluster.getChildCount();
+				return childCount === 1 ? myIcon : myIcon;
+		}
+	});*/
 
 	// CONSTRUCT THE MAP
 	var map = L.map('map', {
 	//	maxZoom: 9
 	}).fitBounds(markers.getBounds());
-	console.log(map.options.crs);
-	console.log(L);
-	console.log(document.getElementById('date-chart'));
+	//console.log(map.options.crs);
+	//console.log(L);
+	//console.log(document.getElementById('date-chart'));
 		
 	baseLayer.addTo(map);
 	//markers.addTo(map);
@@ -173,7 +185,7 @@ script.
 				"type": "name",
 				"properties": {"name": "urn:ogc:def:crs:EPSG::27700"}
 				};
-	console.log(myData);
+	//console.log(myData);
 
 	$(function () {
 		var chart = new Highcharts.Chart({
@@ -186,20 +198,22 @@ script.
 						text: 'Highcharts Polar Chart'
 				},
 
-				pane: {
-						startAngle: 0,
-						endAngle: 360
-				},
+				//pane: {
+				//		startAngle: 0,
+				//		endAngle: 360
+				//},
 
 				xAxis: {
-						tickInterval: 72,
-						min: 0,
-						max: 360,
-						labels: {
-								formatter: function () {
-										return this.value + '°';
-								}
-						}
+					type: 'category',
+						categories: ['','B','','','E', '', '', 'H', '', '', 'K', ''],
+						//tickInterval: 30,
+						//min: 0,
+						///max: 360,
+						//labels: {
+						//		formatter: function () {
+						//				return this.value + '°';
+						//		}
+						//}
 				},
 
 				yAxis: {
@@ -207,22 +221,42 @@ script.
 				},
 
 				plotOptions: {
+					// starts the chart at the 12-o-clock position
+						pointPlacement: 'on',
 						series: {
+								dataLabels: {
+									enabled: false,
+									inside: true,
+									verticalAlign: 'middle'
+								},
+								// keeps the pie wedges joined together
+								pointPadding: 0,
+								groupPadding: 0,
+								stacking: 'normal'
+						}	
+					
+						/*series: {
 								pointStart: 0,
-								pointInterval: 72
+								pointInterval: 30
 						},
 						column: {
 								pointPadding: 0,
 								groupPadding: 0
-						}
+						}*/
 				},
-
+				
+				//https://jsfiddle.net/brightmatrix/uzna0mk6/
 				series: [{
 						type: 'column',
 						name: 'Column',
-						data: [0, 0, 0, 0, 0],
+						data: [
+						// each slice of the pie gets its own color
+							{ y: 0, color: 'rgba(255,249,185, 0.6)' },{ y: 0, color: '#08a4a7' },{ y: 0, color: 'rgba(11,219,182, 0.6)' },
+							{ y: 0, color: 'rgba(255,249,185, 0.6)' },{ y: 0, color: '#08a4a7' },{ y: 0, color: 'rgba(11,219,182, 0.6)' },
+							{ y: 0, color: 'rgba(255,249,185, 0.6)' },{ y: 0, color: '#08a4a7' },{ y: 0, color: 'rgba(11,219,182, 0.6)' },
+							{ y: 0, color: 'rgba(255,249,185, 0.6)' },{ y: 0, color: '#08a4a7' },{ y: 0, color: 'rgba(11,219,182, 0.6)' }]//,
 						//pointPlacement: 'between'
-				}, {
+				}/*, {
 						type: 'line',
 						name: 'Line',
 						data: [0, 0, 0, 0, 0]
@@ -230,30 +264,51 @@ script.
 						type: 'area',
 						name: 'Area',
 						data: [0, 0, 0, 0, 0]
-				}]
+				}*/
+				]
 		});
 		
+		var var1 = '1';
+		var var2 = '1';
+		var var3 = '1';
 		// The button action
-		$('#button').click(function() {
-				chart.series[0].setData([8, 7, 6, 5, 4]);
-				chart.series[1].setData([7, 6, 5, 4, 3]);
-				chart.series[2].setData([6, 5, 4, 3, 2]);
+		$('#button2').click(function() {
+				var var1 = '1';
+				redraw_chart(var1,var2,var3);
+				redraw_map(var1,var2,var3);				
+				//var geojson = filter(var1, var2, var3);
+				
+				
+				//map.addLayer(geojson);
+				//markers.addLayer(geojson);				
+				//chart.series[0].setData([8, 7, 6, 5]);
+				//chart.series[1].setData([7, 6, 5, 4, 3]);
 		});
 		
-		$('#button2').click(function() {
-			chart.series[0].setData([4, 7, 6, 5, 4]);
-			chart.series[2].setData([3, 5, 3, 4, 3]);
-			chart.series[2].setData([2, 3, 1, 3, 2]);
+		$('#button').click(function() {
+			var var1 = '2';
+			chart.series[0].setData([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]);
 		});
 		
 		$('#button3').click(function() {
-			chart.series[0].setData([1, 2, 3, 4, 5]);
-			chart.series[1].setData([1, 2, 3, 4, 4]);
-			chart.series[2].setData([1, 2, 2, 4, 2]);
+			var var1 = '3';
+			chart.series[0].setData([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]);
 		});
 		
+		// create function that based on specified parameters gets the 
+		function redraw_chart(var1,var2,var3) {
+			chart.series[0].setData([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);		
+		};
+		
+		//function redraw markers 
+		function redraw_map(var1,var2,var3) {
+			map.removeLayer(geojson);
+			markers.removeLayer(geojson);		
+		};
+		
+		//http://bl.ocks.org/zross/47760925fcb1643b4225
+		
 	});
-	
 
 	function dropdown(val) {
 		var y = document.getElementsByClassName('btn btn-default dropdown-toggle');
@@ -261,13 +316,14 @@ script.
 	}
 	
 	
+	
+	
 	// works 
 	//L.geoJson(myData, {style:myStyle}).addTo(map);
 	//var marker = L.marker([51.507351, -0.127758]).addTo(map);
 	
-	var myIcon = L.divIcon({className: 'my-div-icon'});
 	// you can set .my-div-icon styles in CSS
-	var marker = L.marker([51.507351, -0.127758], {icon: myIcon}).addTo(map);
+	//var marker = L.marker([51.507351, -0.127758], {icon: myIcon}).addTo(map);
 	
 	var sidebar = L.control.sidebar('sidebar').addTo(map);
 		
