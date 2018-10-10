@@ -292,6 +292,8 @@ script.
 		
 		$('#button3').click(function() {
 			var var1 = '3';
+			map.addLayer(geojson);
+			markers.addLayer(geojson);
 			chart.series[0].setData([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]);
 		});
 		
